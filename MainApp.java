@@ -11,7 +11,7 @@ public class MainApp implements ActionListener {
     static ArrayList<Frame> frames = new ArrayList<Frame>();
 
     Button homeButton, loginButton, registerButton, backToIndex;
-    TextField emailAdressInput;
+    TextField emailAdressInput, passwordInput;
 
     public static void main(String[] args) {
         MainApp mainApp = new MainApp();
@@ -41,9 +41,11 @@ public class MainApp implements ActionListener {
         registerButton = new Button("Registrieren");
         registerButton.addActionListener(this);
         
-
+        backToIndex = new Button("Zurück zum Hauptmenü");
+        backToIndex.addActionListener(this);
 
         emailAdressInput = new TextField("Emailadresse", 30);
+        passwordInput = new TextField("Passwort", 30);
         
         addObjekts();
     }
@@ -51,8 +53,6 @@ public class MainApp implements ActionListener {
     void addObjekts() {
         index.add(loginButton);
         index.add(registerButton);
-
-
     }
     
     void bootCalculatorApp(int width, int height) {
@@ -95,12 +95,21 @@ public class MainApp implements ActionListener {
             invisAllFrames();
             login.setVisible(true);
             login.add(emailAdressInput);
+            login.add(passwordInput);
+            login.add(backToIndex);
         }
 
         if (buttonPressed == "Registrieren") {
             invisAllFrames();
             register.setVisible(true);
             register.add(emailAdressInput);
+            register.add(passwordInput);
+            register.add(backToIndex);
+        }
+
+        if (buttonPressed == "Zurück zum Hauptmenü") {
+            invisAllFrames();
+            index.setVisible(true);
         }
     }
 }
