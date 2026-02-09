@@ -2,45 +2,83 @@ package THW_Helper_App;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class MainApp implements ActionListener {
     static Main main;
-    static Frame home, login;
+    static Frame index, home, login, register;
 
-    Button homeButton, loginButton;
+    static ArrayList<Frame> frames = new ArrayList<Frame>();
+
+    Button homeButton, loginButton, registerButton, backToIndex;
+    TextField emailAdressInput;
 
     public static void main(String[] args) {
         MainApp mainApp = new MainApp();
         mainApp.createMainObjekt();
-        mainApp.bootCalculatorApp("THW Helper App", 800, 450);
+        mainApp.bootCalculatorApp(900, 450);
         
-        home.setVisible(true);
+        index.setVisible(true);
     }
 
     void createMainObjekt() {
         main = new Main();
     }
 
+    void invisAllFrames() {
+        for (Frame currentFrame : frames) {
+            currentFrame.setVisible(false);
+        }
+    }
+
     void createObjekts() {
         homeButton = new Button("Home");
         homeButton.addActionListener(this);
-        login.add(homeButton);
-
-        loginButton = new Button("Login");
+        
+        loginButton = new Button("Anmelden");
         loginButton.addActionListener(this);
-        home.add(loginButton);
+        
+        registerButton = new Button("Registrieren");
+        registerButton.addActionListener(this);
+        
+
+
+        emailAdressInput = new TextField("Emailadresse", 30);
+        
+        addObjekts();
+    }
+
+    void addObjekts() {
+        index.add(loginButton);
+        index.add(registerButton);
+
+
     }
     
-    void bootCalculatorApp(String title, int width, int height) {
-        home = new Frame(title);
+    void bootCalculatorApp(int width, int height) {
+        home = new Frame("Home");
+        frames.add(home);
         
         home.setSize(width, height);
-        home.setLayout(new GridLayout(5,4));
+        home.setLayout(new FlowLayout());
 
-        login = new Frame(title);
+        login = new Frame("Login");
+        frames.add(login);
 
         login.setSize(width, height);
-        login.setLayout(new GridLayout(5, 4));
+        login.setLayout(new FlowLayout());
+
+        register = new Frame("Registrieren");
+        frames.add(register);
+
+        register.setSize(width, height);
+        register.setLayout(new FlowLayout());
+
+        index = new Frame("Startseite");
+        frames.add(index);
+
+        index.setSize(width, height);
+        index.setLayout(new FlowLayout());
 
         createObjekts();
     }
@@ -49,13 +87,20 @@ public class MainApp implements ActionListener {
         String buttonPressed = e.getActionCommand();
         
         if (buttonPressed == "Home") {
+            invisAllFrames();
             home.setVisible(true);
-            login.setVisible(false);
         }
         
-        if (buttonPressed == "Login") {
+        if (buttonPressed == "Anmelden") {
+            invisAllFrames();
             login.setVisible(true);
-            home.setVisible(false);
+            login.add(emailAdressInput);
+        }
+
+        if (buttonPressed == "Registrieren") {
+            invisAllFrames();
+            register.setVisible(true);
+            register.add(emailAdressInput);
         }
     }
 }
