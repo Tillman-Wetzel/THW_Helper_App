@@ -128,7 +128,9 @@ public class MainApp implements ActionListener {
             }
             else {
                 startButton.setLabel("Fehler!!!");
-                
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e1) {}
                 startButton.setLabel("Los gehts!");
             }
         }
