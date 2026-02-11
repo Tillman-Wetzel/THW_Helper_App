@@ -10,7 +10,7 @@ public class MainApp implements ActionListener {
 
     static ArrayList<Frame> frames = new ArrayList<Frame>();
 
-    Button homeButton, loginButton, registerButton, backToIndex;
+    Button homeButton, loginButton, registerButton, backToIndex, startButton;
     TextField emailAdressInput, passwordInput;
 
     public static void main(String[] args) {
@@ -43,6 +43,9 @@ public class MainApp implements ActionListener {
         
         backToIndex = new Button("Zurück zum Hauptmenü");
         backToIndex.addActionListener(this);
+
+        startButton = new Button("Los gehts!");
+        startButton.addActionListener(this);
 
         emailAdressInput = new TextField("Emailadresse", 30);
         passwordInput = new TextField("Passwort", 30);
@@ -82,6 +85,10 @@ public class MainApp implements ActionListener {
 
         createObjekts();
     }
+
+    public boolean checkLoginAndRegistering() {
+        return true;
+    }
     
     public void actionPerformed(ActionEvent e) {
         String buttonPressed = e.getActionCommand();
@@ -97,6 +104,7 @@ public class MainApp implements ActionListener {
             login.add(emailAdressInput);
             login.add(passwordInput);
             login.add(backToIndex);
+            login.add(startButton);
         }
 
         if (buttonPressed == "Registrieren") {
@@ -105,11 +113,24 @@ public class MainApp implements ActionListener {
             register.add(emailAdressInput);
             register.add(passwordInput);
             register.add(backToIndex);
+            register.add(startButton);
         }
 
         if (buttonPressed == "Zurück zum Hauptmenü") {
             invisAllFrames();
             index.setVisible(true);
+        }
+
+        if (buttonPressed == "Los gehts!") {
+            if (checkLoginAndRegistering()) {
+                invisAllFrames();
+                home.setVisible(true);
+            }
+            else {
+                startButton.setLabel("Fehler!!!");
+                
+                startButton.setLabel("Los gehts!");
+            }
         }
     }
 }
