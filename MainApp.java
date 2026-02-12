@@ -11,7 +11,9 @@ public class MainApp implements ActionListener {
     static ArrayList<Frame> frames = new ArrayList<Frame>();
 
     Button homeButton, loginButton, registerButton, backToIndex, startButton;
-    TextField emailAdressInput, passwordInput;
+    TextField emailAdressInput, passwordInput, postleitzahlInput, telefonnummerInput, namenInput, adressenInput;
+
+    Label emailAdresseInputLabel, passwortInputLabel, postleitzahlInputLabel, telefonnummerInputLabel, namenInputLabel, adressenInputLabel;
 
     public static void main(String[] args) {
         MainApp mainApp = new MainApp();
@@ -49,7 +51,11 @@ public class MainApp implements ActionListener {
 
         emailAdressInput = new TextField("Emailadresse", 30);
         passwordInput = new TextField("Passwort", 30);
+        postleitzahlInput = new TextField(30);
         
+        emailAdresseInputLabel = new Label("Email Adresse: ");
+        passwortInputLabel = new Label("Passwort: ");
+
         addObjekts();
     }
 
