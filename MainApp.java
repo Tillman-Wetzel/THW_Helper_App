@@ -17,6 +17,8 @@ public class MainApp implements ActionListener {
 
     public static void main(String[] args) {
         MainApp mainApp = new MainApp();
+        JDBC jdbc = new JDBC();
+        jdbc.setCurrentDatabase("thw_helper_app_database");
         mainApp.createMainObjekt();
         mainApp.bootCalculatorApp(900, 450);
         
@@ -103,6 +105,12 @@ public class MainApp implements ActionListener {
     }
 
     public boolean checkLoginAndRegistering() {
+        String[] coulums = {"*"};
+        if (jdbc.getDatabaseItem("users", coulums, "WHERE emailAdresse = " + emailAdressInput.getText()) != NU) {
+            
+        }
+        
+        
         return true;
     }
     
