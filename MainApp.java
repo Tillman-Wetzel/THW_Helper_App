@@ -49,12 +49,19 @@ public class MainApp implements ActionListener {
         startButton = new Button("Los gehts!");
         startButton.addActionListener(this);
 
-        emailAdressInput = new TextField("Emailadresse", 30);
-        passwordInput = new TextField("Passwort", 30);
+        emailAdressInput = new TextField(30);
+        passwordInput = new TextField( 30);
         postleitzahlInput = new TextField(30);
+        telefonnummerInput = new TextField(30);
+        namenInput = new TextField(30);
+        adressenInput = new TextField(30);
         
         emailAdresseInputLabel = new Label("Email Adresse: ");
         passwortInputLabel = new Label("Passwort: ");
+        postleitzahlInputLabel = new Label("Postleitzahl: ");
+        telefonnummerInputLabel = new Label("Telefonnummer: ");
+        namenInputLabel = new Label("Voller Name: ");
+        adressenInputLabel = new Label("Adresse: ");
 
         addObjekts();
     }
@@ -62,6 +69,9 @@ public class MainApp implements ActionListener {
     void addObjekts() {
         index.add(loginButton);
         index.add(registerButton);
+
+        register.add(namenInputLabel);
+        register.add(namenInput);
     }
     
     void bootCalculatorApp(int width, int height) {
@@ -116,8 +126,16 @@ public class MainApp implements ActionListener {
         if (buttonPressed == "Registrieren") {
             invisAllFrames();
             register.setVisible(true);
+            register.add(emailAdresseInputLabel);
             register.add(emailAdressInput);
+            register.add(passwortInputLabel);
             register.add(passwordInput);
+            register.add(telefonnummerInputLabel);
+            register.add(telefonnummerInput);
+            register.add(adressenInputLabel);
+            register.add(adressenInput);
+            register.add(postleitzahlInputLabel);
+            register.add(postleitzahlInput);
             register.add(backToIndex);
             register.add(startButton);
         }
