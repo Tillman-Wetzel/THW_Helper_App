@@ -106,12 +106,12 @@ public class MainApp implements ActionListener {
 
     public boolean checkLoginAndRegistering() {
         String[] coulums = {"*"};
-        if (jdbc.getDatabaseItem("users", coulums, "WHERE emailAdresse = " + emailAdressInput.getText()) != NU) {
-            
+        if (jdbc.getDatabaseItem("users", coulums, "WHERE emailAdresse = " + emailAdressInput.getText()) == null) {
+            namenInput.setText("Hat geklappt!");
         }
         
         
-        return true;
+        return false;
     }
     
     public void actionPerformed(ActionEvent e) {
