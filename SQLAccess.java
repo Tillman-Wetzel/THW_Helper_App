@@ -3,7 +3,7 @@ package THW_Helper_App;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class JDBC {
+public class SQLAccess {
     private static String currentDatabase = "my_java_database";
     public static void main(String[] args) {
         System.out.println(getDatabaseItem("Users", new String[]{"ID", "firstname", "lastname"}, ""));
@@ -31,7 +31,6 @@ public class JDBC {
                 for (String currentCoulum : coulums) {
                     results.add(rs.getString(currentCoulum));
                 }
-                
             }
 
             // Close resources

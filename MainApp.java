@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class MainApp implements ActionListener {
     static Main main;
+    static SQLAccess mySqlAccess;
     static Frame index, home, login, register;
 
     static ArrayList<Frame> frames = new ArrayList<Frame>();
@@ -15,10 +16,12 @@ public class MainApp implements ActionListener {
 
     Label emailAdresseInputLabel, passwortInputLabel, postleitzahlInputLabel, telefonnummerInputLabel, namenInputLabel, adressenInputLabel;
 
+    static String loginOrRegister;
+
     public static void main(String[] args) {
         MainApp mainApp = new MainApp();
-        JDBC jdbc = new JDBC();
-        jdbc.setCurrentDatabase("thw_helper_app_database");
+        mySqlAccess = new SQLAccess();
+        mySqlAccess.setCurrentDatabase("thw_helper_app_database");
         mainApp.createMainObjekt();
         mainApp.bootCalculatorApp(900, 450);
         
@@ -104,13 +107,17 @@ public class MainApp implements ActionListener {
         createObjekts();
     }
 
-    public boolean checkLoginAndRegistering() {
-        String[] coulums = {"*"};
-        if (jdbc.getDatabaseItem("users", coulums, "WHERE emailAdresse = " + emailAdressInput.getText()) == null) {
+    public boolean checkLoginAndRegistering(SQLAccess mySqlAccess) {
+        if (mySqlAccess.getDatabaseItem("users", new String[]{"emailAdresse"}, "WHERE emailAdresse = " + emailAdressInput.getText()) == new ArrayList<String>()) {
             namenInput.setText("Hat geklappt!");
         }
-        
-        
+        if (loginOrRegister == "login") {
+            System.out.println("login");        
+        }
+        if (loginOrRegister == "register") {
+            System.out.println("Register");
+        }
+
         return false;
     }
     
@@ -123,6 +130,7 @@ public class MainApp implements ActionListener {
         }
         
         if (buttonPressed == "Anmelden") {
+            loginOrRegister = "login";
             invisAllFrames();
             login.setVisible(true);
             login.add(emailAdressInput);
@@ -132,6 +140,7 @@ public class MainApp implements ActionListener {
         }
 
         if (buttonPressed == "Registrieren") {
+            loginOrRegister = "register";
             invisAllFrames();
             register.setVisible(true);
             register.add(emailAdresseInputLabel);
@@ -154,7 +163,7 @@ public class MainApp implements ActionListener {
         }
 
         if (buttonPressed == "Los gehts!") {
-            if (checkLoginAndRegistering()) {
+            if (checkLoginAndRegistering(mySqlAccess)) {
                 invisAllFrames();
                 home.setVisible(true);
             }
