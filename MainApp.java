@@ -107,8 +107,8 @@ public class MainApp implements ActionListener {
         createObjekts();
     }
 
-    public boolean checkLoginAndRegistering(SQLAccess mySqlAccess) {
-        if (mySqlAccess.getDatabaseItem("users", new String[]{"emailAdresse"}, "WHERE emailAdresse = " + emailAdressInput.getText()) == new ArrayList<String>()) {
+    public boolean checkLoginAndRegistering() {
+        if (mySqlAccess.getDatabaseItem("users", new String[]{"emailAdresse"}, "WHERE emailAdresse == " + emailAdressInput.getText()) == new ArrayList<String>()) {
             namenInput.setText("Hat geklappt!");
         }
         if (loginOrRegister == "login") {
@@ -163,7 +163,7 @@ public class MainApp implements ActionListener {
         }
 
         if (buttonPressed == "Los gehts!") {
-            if (checkLoginAndRegistering(mySqlAccess)) {
+            if (checkLoginAndRegistering()) {
                 invisAllFrames();
                 home.setVisible(true);
             }

@@ -25,7 +25,7 @@ public class SQLAccess {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + currentDatabase, "root", "78952");
             Statement stmt = con.createStatement();
             // Execute a query
-            String query = "SELECT * FROM " + relaition + " " + arguments; 
+            String query = "SELECT " + coulums + " FROM " + relaition + " " + arguments; 
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 for (String currentCoulum : coulums) {
